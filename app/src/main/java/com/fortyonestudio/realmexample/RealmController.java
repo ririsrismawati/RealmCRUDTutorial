@@ -3,6 +3,7 @@ package com.fortyonestudio.realmexample;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Fragment;
+import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -73,7 +74,7 @@ public class RealmController {
     }
 
     //query a single item with the given id
-    public User getUser(String id) {
+    public User getUser(int id) {
 
         return realm.where(User.class).equalTo("user_id", id).findFirst();
     }
@@ -93,5 +94,38 @@ public class RealmController {
                 .contains("country", "Indonesia")
                 .findAll();
 
+    }
+
+    public void createUser(User userReq){
+        User user = new User();
+        user.setUser_id((int) (System.currentTimeMillis()));
+        user.setFirst_name(userReq.getFirst_name());
+        user.setLast_name(userReq.getLast_name());
+        user.setCountry(userReq.getCountry());
+
+        realm.beginTransaction();
+        realm.copyToRealm(user);
+        realm.commitTransaction();
+    }
+
+    public void updateUser(User userReq){
+        User user = getUser(userReq.getUser_id());
+        realm.beginTransaction();
+        user.setFirst_name(userReq.getFirst_name());
+        user.setLast_name(userReq.getLast_name());
+        user.setCountry(userReq.getCountry());
+
+        realm.commitTransaction();
+    }
+
+    public void deleteUserByPosition(int position){
+        RealmResults<User> results = realm.where(User.class).findAll();
+
+        // All changes to data must happen in a transaction
+        realm.beginTransaction();
+
+        // remove single match
+        results.remove(position);
+        realm.commitTransaction();
     }
 }

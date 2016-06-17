@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="Edit User"/>
+        android:text="Add User"/>
 
     <EditText
         android:id="@+id/et_firstname"
@@ -38,24 +38,11 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:hint="Country"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"/>
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"/>
-
-    </LinearLayout>
-
-
+        android:text="Save"/>
 
 
 </LinearLayout>
