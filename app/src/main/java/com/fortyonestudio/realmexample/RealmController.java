@@ -11,7 +11,7 @@ import io.realm.RealmResults;
 /**
  * Created by Riris.
  */
-public class RealmController {
+public class RealmController {       
     private static RealmController instance;
     private final Realm realm;
 
